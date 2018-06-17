@@ -2,7 +2,6 @@ package guru.springframework.spring5webapp.model;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 /* anotate class as Entity */
@@ -11,16 +10,18 @@ import java.util.Set;
 public class Author {
 
     /* member variables */
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id; // unique method of identifying, for persistence, needs annotations
+    private Long id;
     private String firstName;
     private String lastName;
 
-    @ManyToMany(mappedBy = "authors") // for the set of books to authors
-    private Set<Book> books = new HashSet<>();
+    @ManyToMany(mappedBy = "authors")
+    private Set<Book> books  = new HashSet<>();
 
     /* constructors */
+
     public Author() {
     }
 
@@ -36,6 +37,7 @@ public class Author {
     }
 
     /* getters and setters */
+
     public Long getId() {
         return id;
     }
@@ -69,18 +71,20 @@ public class Author {
     }
 
     /* overloading */
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Author author = (Author) o;
-        return Objects.equals(id, author.id);
+
+        return id != null ? id.equals(author.id) : author.id == null;
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(id);
+        return id != null ? id.hashCode() : 0;
     }
 
     @Override
