@@ -5,9 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.xml.ws.RequestWrapper;
-
-@Controller   /* a Spring bean */
+/* a Spring bean */
+@Controller
 public class BookController {
 
     private BookRepository bookRepository;
@@ -17,8 +16,8 @@ public class BookController {
         this.bookRepository = bookRepository;
     }
 
-    @RequestMapping("/books") /* assoicate with books path */
-    public String getBooks(Model model) {
+    @RequestMapping("/books")  /* books path */
+    public String getBooks(Model model){
 
         model.addAttribute("books", bookRepository.findAll());
 
